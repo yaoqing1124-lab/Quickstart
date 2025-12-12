@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Test;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class test1130 extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
+public class testOP1130 extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
     private Servo turretLeft = null;
     private Servo turretRight = null;
     private Servo arm = null;

@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Test;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous
-public class t1207 extends test1130 {
+public class t1207 extends testOP1130 {
     private Servo Servo;
     private boolean logic = true;
 
