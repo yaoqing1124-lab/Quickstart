@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.old.test;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
@@ -8,14 +8,16 @@ import com.qualcomm.robotcore.hardware.CRServo;
 
 @TeleOp
 public class p1212 extends Class{
-    PIDFController pid = new PIDFController(0.01,0.00001,0.0015,0);
+    PIDFController pid = new PIDFController(0.05,0.00001,0.015,0);
     private AnalogInput analog;
     private CRServo aim1;
+    private CRServo aim2;
     private Limelight3A limelight;
 
     @Override
     public void init() {
-        aim1 = hardwareMap.get(CRServo.class, "crservo");
+        aim1 = hardwareMap.get(CRServo.class, "aim1");
+        aim2 = hardwareMap.get(CRServo.class,"aim2");
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.setPollRateHz(100); limelight.start(); limelight.pipelineSwitch(0);
         analog = hardwareMap.get(AnalogInput.class,"analog");
@@ -31,10 +33,11 @@ public class p1212 extends Class{
             double setpoint = 0.0;          // 目標就是 tx = 0
             double error = setpoint - tx;   // 誤差 = 目標 - 量測
             // PID output
-            double power = -pid.data(0,error);
+            double power = pid.data(0,error);
 
-            power = Math.max(-0.5, Math.min(0.5, power));
-            aim1.setPower(power);
+//            power = Math.max(-1, Math.min(0.5, power));
+            aim1.setPower(-power);
+            aim2.setPower(-power);
             telemetry.addData("tx", tx);
             telemetry.addData("error", error);
             telemetry.addData("power", power);
@@ -42,6 +45,7 @@ public class p1212 extends Class{
 
         else {
             aim1.setPower(0);
+            aim2.setPower(0);
             telemetry.addData("Limelight", "No Targets");
         }
         double position = (analog.getVoltage()/ analog.getMaxVoltage())*300;
