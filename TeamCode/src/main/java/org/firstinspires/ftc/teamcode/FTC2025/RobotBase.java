@@ -90,8 +90,7 @@ public class RobotBase {
     }
 
     public void spinPosition(double Target) {
-        double position = (robot.analog.getVoltage() / robot.analog.getMaxVoltage()) * 300;
-        if (Math.abs(Target - position) > 10) {
+        if (Math.abs(Target - getSpinPosition()) > 10) {
             robot.spin.setPower(0.2);
         } else {
             robot.spin.setPower(0);
